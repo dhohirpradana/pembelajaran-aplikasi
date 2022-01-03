@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
 
-class HomePage extends StatefulWidget {
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
+class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,9 +67,9 @@ class _HomePageState extends State<HomePage> {
                 ),
                 GestureDetector(
                   onTap: () {
-                     Navigator.of(context).pushNamed('/tugas');
+                    Navigator.of(context).pushNamed('/tugas');
                   },
-                                  child: Center(
+                  child: Center(
                     child: Container(
                       width: 200,
                       height: 200,

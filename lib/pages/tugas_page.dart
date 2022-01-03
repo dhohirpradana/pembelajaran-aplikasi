@@ -1,16 +1,11 @@
-import 'dart:convert';
+// ignore_for_file: must_be_immutable
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:pembelajaran/model/Tugas.dart';
-import 'package:pembelajaran/network/BaseUrl.dart';
-import 'package:pembelajaran/pages/DetailTugas.dart';
+import 'package:pembelajaran/model/tugas.dart';
+import 'package:pembelajaran/network/api.dart';
+import 'package:pembelajaran/pages/tugas_detail_page.dart';
 
-class TugasPage extends StatefulWidget {
-  @override
-  _TugasPageState createState() => _TugasPageState();
-}
-
-class _TugasPageState extends State<TugasPage> {
+class TugasPage extends StatelessWidget {
   List<TugasModel> listTugas = [];
 
   getListTugas() async {
@@ -23,15 +18,7 @@ class _TugasPageState extends State<TugasPage> {
       for (Map i in dataMateri) {
         listTugas.add(TugasModel.createTugas(i as Map<String, dynamic>));
       }
-
-      setState(() {});
     }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    getListTugas();
   }
 
   @override

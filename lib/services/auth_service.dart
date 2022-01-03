@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pembelajaran/model/User.dart';
-import 'package:pembelajaran/network/BaseUrl.dart';
+import 'package:pembelajaran/model/user.dart';
+import 'package:pembelajaran/network/api.dart';
 import 'package:get/get.dart' as getx;
 import 'get/get_auth.dart';
 

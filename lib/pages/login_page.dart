@@ -1,14 +1,9 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
-import 'package:pembelajaran/services/AuthService.dart';
+import 'package:pembelajaran/services/auth_service.dart';
 
-class LoginPage extends StatefulWidget {
-  @override
-  _LoginPageState createState() => _LoginPageState();
-}
-
-class _LoginPageState extends State<LoginPage> {
+class LoginPage extends StatelessWidget {
   final TextEditingController nikController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   @override

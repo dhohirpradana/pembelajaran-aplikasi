@@ -1,18 +1,18 @@
 import 'dart:convert';
 
-class MateriModel {
+class Materi {
   final int? id;
   final String? title;
-  MateriModel({
+  Materi({
     this.id,
     this.title,
   });
 
-  MateriModel copyWith({
+  Materi copyWith({
     int? id,
     String? title,
   }) {
-    return MateriModel(
+    return Materi(
       id: id ?? this.id,
       title: title ?? this.title,
     );
@@ -25,8 +25,8 @@ class MateriModel {
     };
   }
 
-  factory MateriModel.fromMap(Map<String, dynamic> map) {
-    return MateriModel(
+  factory Materi.fromMap(Map<String, dynamic> map) {
+    return Materi(
       id: map['id']?.toInt(),
       title: map['title'],
     );
@@ -34,17 +34,16 @@ class MateriModel {
 
   String toJson() => json.encode(toMap());
 
-  factory MateriModel.fromJson(String source) =>
-      MateriModel.fromMap(json.decode(source));
+  factory Materi.fromJson(String source) => Materi.fromMap(json.decode(source));
 
   @override
-  String toString() => 'MateriModel(id: $id, title: $title)';
+  String toString() => 'Materi(id: $id, title: $title)';
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is MateriModel && other.id == id && other.title == title;
+    return other is Materi && other.id == id && other.title == title;
   }
 
   @override

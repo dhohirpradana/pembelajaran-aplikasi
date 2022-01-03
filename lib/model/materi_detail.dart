@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
-import 'package:pembelajaran/network/BaseUrl.dart';
+import 'package:pembelajaran/network/api.dart';
 
 class MateriDetailModel {
   final int? id;

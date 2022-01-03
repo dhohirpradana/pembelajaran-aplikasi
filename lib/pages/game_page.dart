@@ -1,17 +1,11 @@
-import 'dart:convert';
-
+// ignore_for_file: must_be_immutable
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:pembelajaran/model/GameSoalModel.dart';
-import 'package:pembelajaran/network/BaseUrl.dart';
-import 'package:pembelajaran/pages/DetailGame.dart';
+import 'package:pembelajaran/model/game_soal.dart';
+import 'package:pembelajaran/network/api.dart';
+import 'package:pembelajaran/pages/game_detail_page.dart';
 
-class GamePage extends StatefulWidget {
-  @override
-  _GamePageState createState() => _GamePageState();
-}
-
-class _GamePageState extends State<GamePage> {
+class GamePage extends StatelessWidget {
   List<GameSoalModel> listGame = [];
 
   getListGame() async {
@@ -26,15 +20,7 @@ class _GamePageState extends State<GamePage> {
       for (Map i in dataMateri) {
         listGame.add(GameSoalModel.createGameSoal(i as Map<String, dynamic>));
       }
-
-      setState(() {});
     }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    getListGame();
   }
 
   @override
@@ -54,7 +40,7 @@ class _GamePageState extends State<GamePage> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => DetailGame(listGame[index].id),
+                  builder: (context) => GameDetailPage(listGame[index].id),
                 ),
               );
             },

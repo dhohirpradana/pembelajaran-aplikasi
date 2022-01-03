@@ -2,15 +2,10 @@
 
 import 'package:flutter/material.dart';
 
-class DetailTugas extends StatefulWidget {
+class DetailTugas extends StatelessWidget {
   final String? name;
   DetailTugas(this.name);
 
-  @override
-  _DetailTugasState createState() => _DetailTugasState();
-}
-
-class _DetailTugasState extends State<DetailTugas> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +18,7 @@ class _DetailTugasState extends State<DetailTugas> {
             padding: const EdgeInsets.fromLTRB(40, 20, 40, 10),
             child: Center(
               child: Text(
-                "${widget.name} kajhkjasd kljhdaskasd asdjhasdjas dkjshdas dkasbd as dkas djas das",
+                "$name kajhkjasd kljhdaskasd asdjhasdjas dkjshdas dkasbd as dkas djas das",
                 maxLines: 10,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(

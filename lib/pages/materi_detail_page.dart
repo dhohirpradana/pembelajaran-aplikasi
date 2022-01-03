@@ -1,31 +1,24 @@
-import 'dart:convert';
-
+// ignore_for_file: must_be_immutable
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:pembelajaran/model/Materi.dart';
-import 'package:pembelajaran/model/MateriDetail.dart';
-import 'package:pembelajaran/network/BaseUrl.dart';
+import 'package:pembelajaran/model/materi.dart';
+import 'package:pembelajaran/model/materi_detail.dart';
+import 'package:pembelajaran/network/api.dart';
 
-class DetailMateri extends StatefulWidget {
+class DetailMateri extends StatelessWidget {
   final int? idMateri;
   DetailMateri(this.idMateri);
-
-  @override
-  _DetailMateriState createState() => _DetailMateriState();
-}
-
-class _DetailMateriState extends State<DetailMateri> {
   String? title = "";
   List<MateriDetailModel> listDetailMateri = [];
 
   getDetail() async {
     final dio = Dio();
-    final response = await dio.get(BaseUrl.showMateri(widget.idMateri));
+    final response = await dio.get(BaseUrl.showMateri(idMateri));
     if (response.statusCode == 200) {
       final dataMateri = response.data["data"]["materi"];
       final detailMateri = response.data["data"]["detail_materi"];
 
-      MateriModel hasilMateri = MateriModel.fromMap(dataMateri);
+      Materi hasilMateri = Materi.fromMap(dataMateri);
 
       title = hasilMateri.title;
 
@@ -33,15 +26,7 @@ class _DetailMateriState extends State<DetailMateri> {
         listDetailMateri
             .add(MateriDetailModel.fromJson(i as Map<String, dynamic>));
       }
-
-      setState(() {});
     }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    getDetail();
   }
 
   @override

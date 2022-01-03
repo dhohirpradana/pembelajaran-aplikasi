@@ -1,28 +1,22 @@
-import 'dart:convert';
-
+// ignore_for_file: must_be_immutable
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:pembelajaran/model/GameJawabanModel.dart';
-import 'package:pembelajaran/model/GameSoalModel.dart';
-import 'package:pembelajaran/network/BaseUrl.dart';
-import 'package:pembelajaran/pages/ResponseGame.dart';
+import 'package:pembelajaran/model/game_jawaban.dart';
+import 'package:pembelajaran/model/game_soal.dart';
+import 'package:pembelajaran/network/api.dart';
+import 'package:pembelajaran/pages/game_response_page.dart';
 
-class DetailGame extends StatefulWidget {
+class GameDetailPage extends StatelessWidget {
   final int? idGame;
-  DetailGame(this.idGame);
+  GameDetailPage(this.idGame);
 
-  @override
-  _DetailGameState createState() => _DetailGameState();
-}
-
-class _DetailGameState extends State<DetailGame> {
   String? title = "";
   String image = "";
   List<GameJawabanModel> listDetailGame = [];
 
   getDetail() async {
     final dio = Dio();
-    final response = await dio.get(BaseUrl.showGame(widget.idGame));
+    final response = await dio.get(BaseUrl.showGame(idGame));
 
     if (response.statusCode == 200) {
       final data = response.data["data"]["soal"];
@@ -36,15 +30,7 @@ class _DetailGameState extends State<DetailGame> {
         listDetailGame
             .add(GameJawabanModel.fromJson(i as Map<String, dynamic>));
       }
-
-      setState(() {});
     }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    getDetail();
   }
 
   @override

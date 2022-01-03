@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:pembelajaran/model/User.dart';
+import 'package:pembelajaran/model/user.dart';
 import 'get_auth.dart';
 
 Future<User?> boxUser() async {

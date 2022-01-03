@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:pembelajaran/pages/GamePage.dart';
+import 'package:pembelajaran/pages/game_page.dart';
 
-class ResponseGame extends StatefulWidget {
+class ResponseGame extends StatelessWidget {
   final int? benar;
   ResponseGame(this.benar);
 
-  @override
-  _ResponseGameState createState() => _ResponseGameState();
-}
-
-class _ResponseGameState extends State<ResponseGame> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,14 +19,13 @@ class _ResponseGameState extends State<ResponseGame> {
               height: 300,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                color:
-                    (widget.benar == 1) ? Color(0xFF00af91) : Color(0xFFaf0069),
+                color: (benar == 1) ? Color(0xFF00af91) : Color(0xFFaf0069),
               ),
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Center(
                   child: Text(
-                    (widget.benar == 1)
+                    (benar == 1)
                         ? "Jawaban Anda Benar\n 🤟🤟🤟🤟🤟🤟🤟"
                         : "Jawaban Anda Salah\n 🤣🤣🤣🤣🤣🤣🤣",
                     style: TextStyle(
@@ -49,10 +43,8 @@ class _ResponseGameState extends State<ResponseGame> {
           Center(
             child: GestureDetector(
               onTap: () {
-                 Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => GamePage()));
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => GamePage()));
               },
               child: Container(
                 width: 300,

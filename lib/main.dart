@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:pembelajaran/pages/GamePage.dart';
-import 'package:pembelajaran/pages/HomePage.dart';
-import 'package:pembelajaran/pages/MateriPage.dart';
-import 'package:pembelajaran/pages/TugasPage.dart';
-import 'package:pembelajaran/pages/loginPage.dart';
+import 'package:pembelajaran/pages/game_page.dart';
+import 'package:pembelajaran/pages/home_page.dart';
+import 'package:pembelajaran/pages/materi_page.dart';
+import 'package:pembelajaran/pages/tugas_page.dart';
+import 'pages/login_page.dart';
 import 'services/get/get_auth.dart';
 import 'services/get/get_store.dart';
 
