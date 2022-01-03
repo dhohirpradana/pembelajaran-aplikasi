@@ -1,36 +1,53 @@
 import 'dart:convert';
-import 'package:dio/dio.dart';
-import 'package:pembelajaran/network/api.dart';
 
-class MateriDetailModel {
+class MateriDetail {
   final int? id;
   final String? image;
-  final int? idMateri;
+  MateriDetail({
+    this.id,
+    this.image,
+  });
 
-  MateriDetailModel({this.id, this.image, this.idMateri});
-
-  factory MateriDetailModel.fromJson(Map<String, dynamic> json) {
-    return MateriDetailModel(
-      id: json["id"],
-      image: json["image"],
-      idMateri: json["materi_id"],
+  MateriDetail copyWith({
+    int? id,
+    String? image,
+    int? idMateri,
+  }) {
+    return MateriDetail(
+      id: id ?? this.id,
+      image: image ?? this.image,
     );
   }
 
-  static Future<List<MateriDetailModel>> getMateriDetailFromApi(
-      int idMateri) async {
-    final dio = Dio();
-    String apiUrl = BaseUrl.showMateri(idMateri);
-
-    var apiResult = await dio.get(apiUrl);
-
-    if (apiResult.statusCode == 200) {
-      var jsonObject = json.decode(apiResult.data);
-      return (jsonObject["data"] as List)
-          .map((e) => MateriDetailModel.fromJson(e))
-          .toList();
-    } else {
-      throw Exception('Failed to load kecamatan');
-    }
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'image': image,
+    };
   }
+
+  factory MateriDetail.fromMap(Map<String, dynamic> map) {
+    return MateriDetail(
+      id: map['id']?.toInt(),
+      image: map['image'],
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory MateriDetail.fromJson(String source) =>
+      MateriDetail.fromMap(json.decode(source));
+
+  @override
+  String toString() => 'MateriDetail(id: $id, image: $image)';
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is MateriDetail && other.id == id && other.image == image;
+  }
+
+  @override
+  int get hashCode => id.hashCode ^ image.hashCode;
 }

@@ -17,6 +17,5 @@ Future<User?> boxUser() async {
   } else {
     decodedUser = null;
   }
-  print(decodedUser);
   return decodedUser;
 }

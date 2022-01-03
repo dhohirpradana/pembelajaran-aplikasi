@@ -6,7 +6,7 @@ import 'package:pembelajaran/services/get/get_materi.dart';
 
 class MateriService {
   static final materiController = Get.put(MateriController());
-  getListMateri() async {
+  static getListMateri() async {
     final dio = Dio();
     final response = await dio.get(BaseUrl.materi);
 

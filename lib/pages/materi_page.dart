@@ -3,11 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pembelajaran/pages/materi_detail_page.dart';
 import 'package:pembelajaran/services/get/get_materi.dart';
+import 'package:pembelajaran/services/get/get_materi_detail.dart';
+import 'package:pembelajaran/services/materi_detail_service.dart';
+import 'package:pembelajaran/services/materi_service.dart';
 
 class MateriPage extends StatelessWidget {
   final materiController = Get.put(MateriController());
+  final materiDetailController = Get.put(MateriDetailController());
   @override
   Widget build(BuildContext context) {
+    MateriService.getListMateri();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xFF00917c),
@@ -21,24 +26,26 @@ class MateriPage extends StatelessWidget {
           itemBuilder: (BuildContext context, int index) {
             return GestureDetector(
               onTap: () {
+                MateriDetailService.getMateriDetail(
+                    materiController.materi[index].id!);
                 Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (context) =>
-                            DetailMateri(materiController.materi[index].id)));
+                            DetailMateriPage(materiController.materi[index])));
               },
               child: Center(
                 child: Container(
-                  margin: EdgeInsets.only(top: 20),
-                  width: 300,
-                  height: 50,
+                  margin: EdgeInsets.only(top: 10),
+                  width: Get.width - 30,
+                  height: 60,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     color: Color(0xFF00917c),
                   ),
                   child: Center(
                     child: Text(
-                      "${materiController.materi[index].title}",
+                      "${materiController.materi[index].title}".toUpperCase(),
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 21,

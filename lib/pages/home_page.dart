@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pembelajaran/services/auth_service.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -91,6 +92,11 @@ class HomePage extends StatelessWidget {
                 SizedBox(
                   height: 10,
                 ),
+                ElevatedButton(
+                    onPressed: () {
+                      Auth.logout();
+                    },
+                    child: Text('Logout'))
               ],
             ),
           ],

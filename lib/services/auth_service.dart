@@ -51,4 +51,8 @@ class Auth {
     }
     Navigator.of(Get.overlayContext!).pop();
   }
+
+  static void logout() {
+    userController.updateUser(null);
+  }
 }
