@@ -2,7 +2,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:pembelajaran/model/tugas.dart';
-import 'package:pembelajaran/network/api.dart';
+import 'package:pembelajaran/constants/api.dart';
 import 'package:pembelajaran/pages/tugas_detail_page.dart';
 
 class TugasPage extends StatelessWidget {

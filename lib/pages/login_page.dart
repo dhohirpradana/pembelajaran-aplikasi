@@ -1,6 +1,7 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:pembelajaran/services/auth_service.dart';
 
 class LoginPage extends StatelessWidget {
@@ -17,7 +18,7 @@ class LoginPage extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              margin: EdgeInsets.fromLTRB(0, 40, 0, 40),
+              margin: EdgeInsets.fromLTRB(0, 0, 0, 25),
               height: 240.0,
               width: 240.0,
               decoration: BoxDecoration(
@@ -48,12 +49,15 @@ class LoginPage extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 20,
+              height: 10,
             ),
-            RaisedButton(
-                color: Colors.green,
+            ElevatedButton(
+                style: ButtonStyle(
+                    minimumSize:
+                        MaterialStateProperty.all(Size(Get.width, 45))),
+                // color: Colors.green,
                 child: Text(
-                  "Login",
+                  "MASUK",
                   style: TextStyle(color: Colors.white),
                 ),
                 onPressed: () {

@@ -1,73 +1,88 @@
 // ignore_for_file: must_be_immutable
-import 'package:dio/dio.dart';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
-import 'package:pembelajaran/model/game_jawaban.dart';
-import 'package:pembelajaran/model/game_soal.dart';
-import 'package:pembelajaran/network/api.dart';
+import 'package:get/get.dart';
+import 'package:pembelajaran/model/game.dart';
+import 'package:pembelajaran/constants/api.dart';
 import 'package:pembelajaran/pages/game_response_page.dart';
+import 'package:pembelajaran/services/game_detail_service.dart';
+import 'package:pembelajaran/services/get/get_game_detail.dart';
 
 class GameDetailPage extends StatelessWidget {
-  final int? idGame;
-  GameDetailPage(this.idGame);
+  final Game gameDetail;
+  GameDetailPage(this.gameDetail);
 
-  String? title = "";
-  String image = "";
-  List<GameJawabanModel> listDetailGame = [];
+  final gameDetailController = Get.put(GameDetailController());
 
-  getDetail() async {
-    final dio = Dio();
-    final response = await dio.get(BaseUrl.showGame(idGame));
+  // main color
 
-    if (response.statusCode == 200) {
-      final data = response.data["data"]["soal"];
-      final detail = response.data["data"]["game_jawaban"];
-      GameSoalModel hasil = GameSoalModel.createGameSoal(data);
+// green    00917c
+// blue     11698e
+// orange   f58634
+// red      ff005c
+// purple   6930c3
 
-      title = hasil.name;
-      image = BaseUrl.image + hasil.gambar!;
+  List<Color> warna = [
+    Color(0xFF00917c),
+    Color(0xFF11698e),
+    Color(0xFFff005c),
+    Color(0xFFf58634),
+    Color(0xFF6930c3),
+  ];
 
-      for (Map i in detail) {
-        listDetailGame
-            .add(GameJawabanModel.fromJson(i as Map<String, dynamic>));
-      }
+  List shuffle(List items) {
+    var random = Random();
+
+    // Go through all elements.
+    for (var i = items.length - 1; i > 0; i--) {
+      // Pick a pseudorandom number according to the list length
+      var n = random.nextInt(i + 1);
+
+      var temp = items[i];
+      items[i] = items[n];
+      items[n] = temp;
     }
+
+    return items;
   }
 
   @override
   Widget build(BuildContext context) {
+    final suffleColor = shuffle(warna);
+    GameDetailService.getDetail(gameDetail.id);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xFFef8d32),
         title: Text("Detail Game"),
       ),
-      body: Column(
-        children: [
-          SizedBox(
-            height: 20,
-          ),
-          Center(
-            child: Container(
-              margin: EdgeInsets.only(top: 20),
-              height: 300,
-              width: 300,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                image: DecorationImage(
-                  image: NetworkImage(
-                    image,
-                  ),
-                  fit: BoxFit.cover,
-                ),
-              ),
+      body: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Column(
+          children: [
+            Container(
+              margin: EdgeInsets.only(bottom: 10),
+              child: Image.network(BaseUrl.image + gameDetail.gambar),
             ),
-          ),
-          SizedBox(
-            height: 40,
-          ),
-          Expanded(
-              child: ListView.builder(
-                  padding: EdgeInsets.all(10),
-                  itemCount: listDetailGame.length,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Flexible(
+                  child: Text(
+                    gameDetail.name,
+                    maxLines: 5,
+                    softWrap: false,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(fontSize: 32, fontWeight: FontWeight.w600),
+                  ),
+                ),
+              ],
+            ),
+            Expanded(
+                child: GetBuilder<GameDetailController>(builder: (context) {
+              return ListView.builder(
+                  padding: EdgeInsets.all(0),
+                  itemCount: gameDetailController.gameDetail.length,
                   shrinkWrap: false,
                   itemBuilder: (BuildContext context, int index) {
                     return Center(
@@ -77,30 +92,34 @@ class GameDetailPage extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                   builder: (context) => ResponseGame(
-                                      listDetailGame[index].benar)));
+                                      gameDetailController
+                                          .gameDetail[index].benar)));
                         },
                         child: Container(
-                          margin: EdgeInsets.only(top: 20),
-                          width: 300,
-                          height: 50,
+                          margin: EdgeInsets.only(top: 10),
+                          width: Get.width - 20,
+                          height: 60,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            color: Color(0xFF250b7a),
+                            color: suffleColor[index],
                           ),
                           child: Center(
                             child: Text(
-                              listDetailGame[index].jawaban!,
+                              gameDetailController.gameDetail[index].jawaban,
                               style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 21,
+                                fontSize: 24,
+                                fontWeight: FontWeight.w600,
                               ),
                             ),
                           ),
                         ),
                       ),
                     );
-                  })),
-        ],
+                  });
+            })),
+          ],
+        ),
       ),
     );
   }

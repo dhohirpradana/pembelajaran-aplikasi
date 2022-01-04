@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:pembelajaran/services/auth_service.dart';
 
 class HomePage extends StatelessWidget {
@@ -9,7 +10,7 @@ class HomePage extends StatelessWidget {
         title: Text("Home"),
       ),
       body: Padding(
-        padding: const EdgeInsets.fromLTRB(32, 30, 32, 22),
+        padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
         child: ListView(
           children: [
             Column(
@@ -20,7 +21,7 @@ class HomePage extends StatelessWidget {
                   },
                   child: Center(
                     child: Container(
-                      width: 200,
+                      width: Get.width,
                       height: 200,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
@@ -46,7 +47,7 @@ class HomePage extends StatelessWidget {
                   },
                   child: Center(
                     child: Container(
-                      width: 200,
+                      width: Get.width,
                       height: 200,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
@@ -72,7 +73,7 @@ class HomePage extends StatelessWidget {
                   },
                   child: Center(
                     child: Container(
-                      width: 200,
+                      width: Get.width,
                       height: 200,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
@@ -93,10 +94,15 @@ class HomePage extends StatelessWidget {
                   height: 10,
                 ),
                 ElevatedButton(
+                    style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all(Colors.red[700]),
+                        minimumSize:
+                            MaterialStateProperty.all(Size(Get.width, 40))),
                     onPressed: () {
                       Auth.logout();
                     },
-                    child: Text('Logout'))
+                    child: Text('KELUAR'))
               ],
             ),
           ],

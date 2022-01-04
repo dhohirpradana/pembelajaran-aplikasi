@@ -1,8 +1,10 @@
 // ignore_for_file: must_be_immutable
 import 'package:flutter/material.dart';
 import 'package:pembelajaran/model/materi.dart';
+import 'package:pembelajaran/constants/api.dart';
 import 'package:pembelajaran/services/get/get_materi_detail.dart';
 import 'package:get/get.dart';
+import 'package:pembelajaran/services/materi_detail_service.dart';
 
 class DetailMateriPage extends StatelessWidget {
   final Materi materi;
@@ -11,64 +13,31 @@ class DetailMateriPage extends StatelessWidget {
   final materiDetailController = Get.put(MateriDetailController());
   @override
   Widget build(BuildContext context) {
+    MateriDetailService.getMateriDetail(materi.id!);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xFF00917c),
-        title: Text("Detail materi "),
+        title: Text("${materi.title.toString()}".toUpperCase()),
       ),
       body: Column(
         children: [
           SizedBox(
-            height: 20,
+            height: 10,
           ),
-          Center(
-            child: Container(
-              width: 300,
-              height: 50,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: Color(0xFF00917c),
-              ),
-              child: Center(
-                child: Text(
-                  "${materi.title.toString()}",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 21,
-                  ),
-                ),
-              ),
-            ),
+          Expanded(
+            child: Padding(
+                padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
+                child: GetBuilder<MateriDetailController>(
+                    builder: (_) => ListView.builder(
+                        itemCount: materiDetailController.materiDetail.length,
+                        itemBuilder: (BuildContext context, i) {
+                          return Container(
+                            margin: EdgeInsets.only(bottom: 5),
+                            child: Image.network(BaseUrl.image +
+                                materiDetailController.materiDetail[i].image!),
+                          );
+                        }))),
           ),
-          GetBuilder<MateriDetailController>(
-            builder: (_) => (materiDetailController.materiDetail != null)
-                ? Image.network(
-                    "http://192.168.43.205:8000/storage/images/GX9lwhxuINxgfxfiW3Kd1641152958.jpg")
-                : SizedBox(),
-          )
-
-          // Expanded(
-          //   child: GetBuilder<MateriDetailController>(
-          //     builder: (_) => Center(
-          //       child: (materiDetailController.materiDetail != null)
-          //           ? Container(
-          //               margin: EdgeInsets.only(top: 20),
-          //               height: 300,
-          //               width: 300,
-          //               decoration: BoxDecoration(
-          //                   borderRadius: BorderRadius.circular(10),
-          //                   image: DecorationImage(
-          //                       image: NetworkImage(
-          //                         BaseUrl.image +
-          //                             materiDetailController
-          //                                 .materiDetail!.image!,
-          //                       ),
-          //                       fit: BoxFit.cover)),
-          //             )
-          //           : SizedBox(),
-          //     ),
-          //   ),
-          // )
         ],
       ),
     );
