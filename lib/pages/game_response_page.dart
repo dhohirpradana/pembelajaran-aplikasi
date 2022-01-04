@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pembelajaran/pages/game_page.dart';
 
 class ResponseGame extends StatelessWidget {
   final int? benar;
@@ -27,8 +26,8 @@ class ResponseGame extends StatelessWidget {
                   child: Center(
                     child: Text(
                       (benar == 1)
-                          ? "Jawaban Anda Benar\n 🤟🤟🤟🤟🤟🤟🤟"
-                          : "Jawaban Anda Salah\n 🤣🤣🤣🤣🤣🤣🤣",
+                          ? "Jawaban Anda Benar\nSiiiip...\n🤟🤟🤟🤟🤟🤟🤟"
+                          : "Jawaban Anda Salah\nAwOkawOk\n🤣🤣🤣🤣🤣🤣🤣",
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 28,

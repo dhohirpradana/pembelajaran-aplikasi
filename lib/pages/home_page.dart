@@ -31,9 +31,9 @@ class HomePage extends StatelessWidget {
                           child: Text(
                         "MATERI",
                         style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 30,
-                        ),
+                            color: Colors.white,
+                            fontSize: 30,
+                            fontWeight: FontWeight.w600),
                       )),
                     ),
                   ),
@@ -57,9 +57,9 @@ class HomePage extends StatelessWidget {
                           child: Text(
                         "GAME",
                         style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 30,
-                        ),
+                            color: Colors.white,
+                            fontSize: 30,
+                            fontWeight: FontWeight.w600),
                       )),
                     ),
                   ),
@@ -83,9 +83,9 @@ class HomePage extends StatelessWidget {
                           child: Text(
                         "TUGAS",
                         style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 30,
-                        ),
+                            color: Colors.white,
+                            fontSize: 30,
+                            fontWeight: FontWeight.w600),
                       )),
                     ),
                   ),
@@ -96,13 +96,19 @@ class HomePage extends StatelessWidget {
                 ElevatedButton(
                     style: ButtonStyle(
                         backgroundColor:
-                            MaterialStateProperty.all(Colors.red[700]),
+                            MaterialStateProperty.all(Colors.blueGrey[700]),
                         minimumSize:
-                            MaterialStateProperty.all(Size(Get.width, 40))),
+                            MaterialStateProperty.all(Size(Get.width, 100))),
                     onPressed: () {
                       Auth.logout();
                     },
-                    child: Text('KELUAR'))
+                    child: Text(
+                      'PROFIL',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 30,
+                      ),
+                    ))
               ],
             ),
           ],

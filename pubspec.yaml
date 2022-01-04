@@ -25,6 +25,7 @@ dependencies:
   dio: ^4.0.4
   flutter:
     sdk: flutter
+  flutter_html: ^2.2.1
   get: ^4.6.1
   get_storage: ^2.0.3
 

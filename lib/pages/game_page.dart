@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pembelajaran/model/game.dart';
 import 'package:pembelajaran/constants/api.dart';
-import 'package:pembelajaran/services/game_soal_service.dart';
+import 'package:pembelajaran/services/game_service.dart';
 import 'package:pembelajaran/services/get/get_game.dart';
 
 import 'game_detail_page.dart';
@@ -54,7 +54,6 @@ class GamePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final suffleColor = shuffle(warna);
     GameSoalService.getGameDetail();
     return Scaffold(
       appBar: AppBar(
@@ -69,6 +68,7 @@ class GamePage extends StatelessWidget {
           shrinkWrap: false,
           itemCount: materiController.game.length,
           itemBuilder: (BuildContext context, int index) {
+            final suffleColor = shuffle(warna);
             return GestureDetector(
               onTap: () {
                 Navigator.push(
@@ -83,10 +83,10 @@ class GamePage extends StatelessWidget {
                 child: Container(
                   margin: EdgeInsets.only(top: 10),
                   width: Get.width - 30,
-                  height: 60,
+                  height: 100,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: suffleColor[index],
+                    color: suffleColor[0],
                   ),
                   child: Center(
                     child: Text(

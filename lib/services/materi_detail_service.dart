@@ -1,12 +1,10 @@
 import 'package:dio/dio.dart';
-import 'package:get/get.dart';
+import 'package:pembelajaran/constants/get_controller.dart';
 import 'package:pembelajaran/model/materi_detail.dart';
 import 'package:pembelajaran/constants/api.dart';
-import 'package:pembelajaran/services/get/get_materi_detail.dart';
 
 class MateriDetailService {
   static Future<void> getMateriDetail(int idMateri) async {
-    final materiDetailController = Get.put(MateriDetailController());
     materiDetailController.updateMateriDetail([]);
     final dio = Dio();
     final response = await dio.get(BaseUrl.showMateri(idMateri));

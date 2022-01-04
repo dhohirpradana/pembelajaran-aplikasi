@@ -1,5 +1,6 @@
 // ignore_for_file: must_be_immutable
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:pembelajaran/model/materi.dart';
 import 'package:pembelajaran/constants/api.dart';
 import 'package:pembelajaran/services/get/get_materi_detail.dart';
@@ -26,18 +27,26 @@ class DetailMateriPage extends StatelessWidget {
           ),
           Expanded(
             child: Padding(
-                padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
-                child: GetBuilder<MateriDetailController>(
-                    builder: (_) => ListView.builder(
-                        itemCount: materiDetailController.materiDetail.length,
-                        itemBuilder: (BuildContext context, i) {
-                          return Container(
-                            margin: EdgeInsets.only(bottom: 5),
-                            child: Image.network(BaseUrl.image +
-                                materiDetailController.materiDetail[i].image!),
-                          );
-                        }))),
+              padding: EdgeInsets.fromLTRB(
+                  10, 0, 10, (materi.konten == null) ? 10 : 0),
+              child: GetBuilder<MateriDetailController>(
+                builder: (_) => ListView.builder(
+                    itemCount: materiDetailController.materiDetail.length,
+                    itemBuilder: (BuildContext context, i) {
+                      return Container(
+                        margin: EdgeInsets.only(bottom: 5),
+                        child: Image.network(BaseUrl.image +
+                            materiDetailController.materiDetail[i].image!),
+                      );
+                    }),
+              ),
+            ),
           ),
+          (materi.konten == null)
+              ? SizedBox()
+              : Html(data: """${materi.konten}""", style: {
+                  "p": Style(fontSize: FontSize(18)),
+                })
         ],
       ),
     );

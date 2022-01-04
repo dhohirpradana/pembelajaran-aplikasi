@@ -38,7 +38,6 @@ class MateriPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final suffleColor = shuffle(warna);
     MateriService.getListMateri();
     return Scaffold(
       appBar: AppBar(
@@ -51,6 +50,7 @@ class MateriPage extends StatelessWidget {
           shrinkWrap: false,
           itemCount: materiController.materi.length,
           itemBuilder: (BuildContext context, int index) {
+            final suffleColor = shuffle(warna);
             return GestureDetector(
               onTap: () {
                 Navigator.push(
@@ -63,10 +63,10 @@ class MateriPage extends StatelessWidget {
                 child: Container(
                   margin: EdgeInsets.only(top: 10),
                   width: Get.width - 30,
-                  height: 60,
+                  height: 100,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: suffleColor[index],
+                    color: suffleColor[0],
                   ),
                   child: Center(
                     child: Text(

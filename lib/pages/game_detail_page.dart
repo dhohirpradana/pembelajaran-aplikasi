@@ -49,7 +49,6 @@ class GameDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final suffleColor = shuffle(warna);
     GameDetailService.getDetail(gameDetail.id);
     return Scaffold(
       appBar: AppBar(
@@ -85,6 +84,7 @@ class GameDetailPage extends StatelessWidget {
                   itemCount: gameDetailController.gameDetail.length,
                   shrinkWrap: false,
                   itemBuilder: (BuildContext context, int index) {
+                    final suffleColor = shuffle(warna);
                     return Center(
                       child: GestureDetector(
                         onTap: () {

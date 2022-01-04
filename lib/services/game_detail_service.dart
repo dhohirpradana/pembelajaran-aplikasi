@@ -1,13 +1,10 @@
 import 'package:dio/dio.dart';
-import 'package:get/get.dart';
+import 'package:pembelajaran/constants/get_controller.dart';
 import 'package:pembelajaran/model/game_detail.dart';
 import 'package:pembelajaran/constants/api.dart';
 
-import 'get/get_game_detail.dart';
-
 class GameDetailService {
   static getDetail(int id) async {
-    final gameDetailController = Get.put(GameDetailController());
     gameDetailController.updateDetail([]);
     final dio = Dio();
     final response = await dio.get(BaseUrl.showGame(id));
