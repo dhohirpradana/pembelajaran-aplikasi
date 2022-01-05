@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:get_storage/get_storage.dart';
 import 'package:pembelajaran/constants/get_controller.dart';
-import 'package:pembelajaran/model/user.dart';
+import 'package:pembelajaran/models/user.dart';
 
 Future<User?> boxUser() async {
   final box = GetStorage();

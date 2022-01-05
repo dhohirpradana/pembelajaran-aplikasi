@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:pembelajaran/model/materi.dart';
+import 'package:pembelajaran/models/materi.dart';
 
 class MateriController extends GetxController {
   List<Materi> materi = [];

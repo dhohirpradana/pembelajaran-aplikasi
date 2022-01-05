@@ -3,13 +3,13 @@ import 'package:get/get.dart';
 
 class PaginationController extends GetxController {
   int pageIndex = 0;
-  String title = "HOME";
+  String title = "Selamat Datang";
   Color warna = Colors.blue;
   void updatePageIndex(int index) {
     pageIndex = index;
     if (index == 0) {
       warna = Colors.blue;
-      title = "HOME";
+      title = "Selamat datang";
     } else if (index == 1) {
       warna = Color(0xFF00917c);
       title = "MATERI";

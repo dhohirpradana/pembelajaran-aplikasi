@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:pembelajaran/model/game_detail.dart';
+import 'package:pembelajaran/models/game_detail.dart';
 
 class GameDetailController extends GetxController {
   List<GameDetail> gameDetail = [];

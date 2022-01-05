@@ -16,10 +16,14 @@ Future<void> main() async {
   final userController = Get.put(UserController());
   runApp(GetMaterialApp(
     home: GetBuilder<UserController>(
-        builder: (_) =>
-            (userController.user == null) ? LoginPage() : FoundationPage()),
+        builder: (_) => (userController.user == null)
+            ? LoginPage()
+            : FoundationPage(
+                user: userController.user!,
+              )),
     routes: <String, WidgetBuilder>{
-      '/home': (BuildContext context) => new HomePage(),
+      '/home': (BuildContext context) =>
+          new HomePage(user: userController.user!),
       '/materi': (BuildContext context) => new MateriPage(),
       '/game': (BuildContext context) => new GamePage(),
       '/tugas': (BuildContext context) => new TugasPage(),

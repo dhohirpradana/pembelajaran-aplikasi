@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pembelajaran/model/user.dart';
+import 'package:pembelajaran/models/user.dart';
 import 'package:pembelajaran/constants/api.dart';
 import 'package:get/get.dart' as getx;
 import 'get/get_auth.dart';
@@ -9,7 +9,6 @@ import 'get/get_auth.dart';
 class Auth {
   static final dio = Dio();
   static final userController = Get.put(UserController());
-
   static Future<void> login(String nik, String password) async {
     var params = {
       'nik': nik,

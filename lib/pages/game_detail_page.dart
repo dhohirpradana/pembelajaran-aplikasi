@@ -3,25 +3,18 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pembelajaran/model/game.dart';
+import 'package:pembelajaran/models/game.dart';
 import 'package:pembelajaran/constants/api.dart';
 import 'package:pembelajaran/pages/game_response_page.dart';
 import 'package:pembelajaran/services/game_detail_service.dart';
 import 'package:pembelajaran/services/get/get_game_detail.dart';
+import 'package:pinch_zoom/pinch_zoom.dart';
 
 class GameDetailPage extends StatelessWidget {
   final Game gameDetail;
   GameDetailPage(this.gameDetail);
 
   final gameDetailController = Get.put(GameDetailController());
-
-  // main color
-
-// green    00917c
-// blue     11698e
-// orange   f58634
-// red      ff005c
-// purple   6930c3
 
   List<Color> warna = [
     Color(0xFF00917c),
@@ -38,7 +31,6 @@ class GameDetailPage extends StatelessWidget {
     for (var i = items.length - 1; i > 0; i--) {
       // Pick a pseudorandom number according to the list length
       var n = random.nextInt(i + 1);
-
       var temp = items[i];
       items[i] = items[n];
       items[n] = temp;
@@ -59,10 +51,41 @@ class GameDetailPage extends StatelessWidget {
         padding: const EdgeInsets.all(10.0),
         child: Column(
           children: [
-            Container(
-              margin: EdgeInsets.only(bottom: 10),
-              child: Image.network(BaseUrl.image + gameDetail.gambar),
-            ),
+            (gameDetail.gambar == "")
+                ? SizedBox()
+                : Expanded(
+                    child: PinchZoom(
+                      child: Container(
+                        margin: EdgeInsets.only(bottom: 10),
+                        child: Image.network(
+                          BaseUrl.image + gameDetail.gambar,
+                          fit: BoxFit.fill,
+                          loadingBuilder: (BuildContext context, Widget child,
+                              ImageChunkEvent? loadingProgress) {
+                            if (loadingProgress == null) return child;
+                            return Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Center(
+                                child: CircularProgressIndicator(
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                      Colors.blue),
+                                  value: loadingProgress.expectedTotalBytes !=
+                                          null
+                                      ? loadingProgress.cumulativeBytesLoaded /
+                                          loadingProgress.expectedTotalBytes!
+                                      : null,
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                      resetDuration: const Duration(seconds: 2),
+                      maxScale: 2.5,
+                      onZoomStart: () {},
+                      onZoomEnd: () {},
+                    ),
+                  ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
