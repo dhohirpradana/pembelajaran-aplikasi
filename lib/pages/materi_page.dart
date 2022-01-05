@@ -6,6 +6,7 @@ import 'package:pembelajaran/pages/materi_detail_page.dart';
 import 'package:pembelajaran/services/get/get_materi.dart';
 import 'package:pembelajaran/services/get/get_materi_detail.dart';
 import 'package:pembelajaran/services/materi_service.dart';
+import 'package:pembelajaran/widgets/shimmer_widget.dart';
 
 class MateriPage extends StatelessWidget {
   final materiController = Get.put(MateriController());
@@ -39,50 +40,47 @@ class MateriPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     MateriService.getListMateri();
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xFF00917c),
-        title: Text("Daftar Materi"),
-      ),
-      body: GetBuilder<MateriController>(
-        builder: (_) => ListView.builder(
-          padding: EdgeInsets.all(10),
-          shrinkWrap: false,
-          itemCount: materiController.materi.length,
-          itemBuilder: (BuildContext context, int index) {
-            final suffleColor = shuffle(warna);
-            return GestureDetector(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            DetailMateriPage(materiController.materi[index])));
-              },
-              child: Center(
-                child: Container(
-                  margin: EdgeInsets.only(top: 10),
-                  width: Get.width - 30,
-                  height: 100,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: suffleColor[0],
-                  ),
+    return GetBuilder<MateriController>(
+      builder: (_) => (materiController.isLoad)
+          ? ShimmerWidget()
+          : ListView.builder(
+              padding: EdgeInsets.all(10),
+              shrinkWrap: false,
+              itemCount: materiController.materi.length,
+              itemBuilder: (BuildContext context, int index) {
+                final suffleColor = shuffle(warna);
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => DetailMateriPage(
+                                materiController.materi[index])));
+                  },
                   child: Center(
-                    child: Text(
-                      "${materiController.materi[index].title}".toUpperCase(),
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 24,
-                          fontWeight: FontWeight.w600),
+                    child: Container(
+                      margin: EdgeInsets.only(top: 10),
+                      width: Get.width - 30,
+                      height: 100,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: suffleColor[0],
+                      ),
+                      child: Center(
+                        child: Text(
+                          "${materiController.materi[index].title}"
+                              .toUpperCase(),
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 24,
+                              fontWeight: FontWeight.w600),
+                        ),
+                      ),
                     ),
                   ),
-                ),
-              ),
-            );
-          },
-        ),
-      ),
+                );
+              },
+            ),
     );
   }
 }

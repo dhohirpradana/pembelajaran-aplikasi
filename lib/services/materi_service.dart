@@ -6,6 +6,7 @@ import 'package:pembelajaran/constants/api.dart';
 class MateriService {
   static getListMateri() async {
     materiController.updateMateri([]);
+    materiController.onLoadData();
     final dio = Dio();
     final response = await dio.get(BaseUrl.materi);
 

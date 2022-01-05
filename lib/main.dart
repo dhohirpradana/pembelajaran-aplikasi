@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:pembelajaran/pages/game_page.dart';
-import 'package:pembelajaran/pages/home_page.dart';
-import 'package:pembelajaran/pages/materi_page.dart';
-import 'package:pembelajaran/pages/tugas_page.dart';
+import 'package:pembelajaran/pages/foundation_page.dart';
+import 'pages/game_page.dart';
+import 'pages/home_page.dart';
 import 'pages/login_page.dart';
+import 'pages/materi_page.dart';
+import 'pages/tugas_page.dart';
 import 'services/get/get_auth.dart';
 import 'services/get/get_store.dart';
 
@@ -16,7 +17,7 @@ Future<void> main() async {
   runApp(GetMaterialApp(
     home: GetBuilder<UserController>(
         builder: (_) =>
-            (userController.user == null) ? LoginPage() : HomePage()),
+            (userController.user == null) ? LoginPage() : FoundationPage()),
     routes: <String, WidgetBuilder>{
       '/home': (BuildContext context) => new HomePage(),
       '/materi': (BuildContext context) => new MateriPage(),

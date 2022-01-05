@@ -1,5 +1,6 @@
 class BaseUrl {
-  static String baseUrl = "http://pembelajaran.dhohirpradana.com/public/";
+  // static String baseUrl = "http://pembelajaran.dhohirpradana.com/public/";
+  static String baseUrl = 'https://192.168.43.205:8000/';
   static String api = baseUrl + "api/";
   static String image = baseUrl + "storage/";
 

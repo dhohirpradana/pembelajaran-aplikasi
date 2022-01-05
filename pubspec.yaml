@@ -22,12 +22,15 @@ environment:
 
 dependencies:
   cupertino_icons: ^1.0.4
+  curved_navigation_bar: ^1.0.1
   dio: ^4.0.4
   flutter:
     sdk: flutter
   flutter_html: ^2.2.1
   get: ^4.6.1
   get_storage: ^2.0.3
+  material_design_icons_flutter: ^5.0.6595
+  shimmer: ^2.0.0
 
 dev_dependencies:
   flutter_test:
