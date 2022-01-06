@@ -1,6 +1,5 @@
 // ignore_for_file: must_be_immutable
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pembelajaran/models/game.dart';
@@ -111,12 +110,8 @@ class GameDetailPage extends StatelessWidget {
                     return Center(
                       child: GestureDetector(
                         onTap: () {
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => ResponseGame(
-                                      gameDetailController
-                                          .gameDetail[index].benar)));
+                          Get.off(ResponseGame(
+                              gameDetailController.gameDetail[index].benar));
                         },
                         child: Container(
                           margin: EdgeInsets.only(top: 10),

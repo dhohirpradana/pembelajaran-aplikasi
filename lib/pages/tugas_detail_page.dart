@@ -1,60 +1,87 @@
-// ignore_for_file: deprecated_member_use
-
+// ignore_for_file: deprecated_member_use, must_be_immutable
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:pembelajaran/models/tugas.dart';
+import 'package:pembelajaran/models/user.dart';
+import 'package:pembelajaran/services/get/get_picker.dart';
+import 'package:pembelajaran/services/image_picker.dart';
+import 'package:pembelajaran/services/tugas_service.dart';
 
 class DetailTugas extends StatelessWidget {
-  final String? name;
-  DetailTugas(this.name);
+  final Tugas tugas;
+  final User user;
+  DetailTugas(
+    this.tugas,
+    this.user,
+  );
+
+  final pickerController = Get.put(PickerController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color(0xFF6930c3),
+        title: Text('UPLOAD TUGAS'),
+      ),
       body: Column(
         children: [
-          SizedBox(
-            height: 100,
-          ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(40, 20, 40, 10),
+            padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
             child: Center(
               child: Text(
-                "$name kajhkjasd kljhdaskasd asdjhasdjas dkjshdas dkasbd as dkas djas das",
+                tugas.name!,
                 maxLines: 10,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
-                  color: Color(0xFF6930c3),
-                  fontSize: 22,
+                  color: Colors.black,
+                  fontSize: 20,
                 ),
               ),
             ),
           ),
-          SizedBox(
-            height: 40,
-          ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(40, 20, 40, 10),
-            child: TextField(
-              keyboardType: TextInputType.multiline,
-              minLines: 1,
-              maxLines: 10,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Link',
-              ),
-            ),
-          ),
+              padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+              child: GetBuilder<PickerController>(
+                  builder: (_) => (pickerController.pickedFile == null)
+                      ? Text('Tidak ada gambar')
+                      : Image(
+                          height: Get.height / 3,
+                          image: FileImage(
+                              File(pickerController.pickedFile!.path))))),
           SizedBox(
-            height: 20,
+            height: 10,
           ),
-          RaisedButton(
-              color: Colors.green,
+          ElevatedButton(
+              style: ButtonStyle(
+                  minimumSize:
+                      MaterialStateProperty.all(Size(Get.width - 20, 40)),
+                  backgroundColor: MaterialStateProperty.all(Colors.blue)),
               child: Text(
-                "Kirim",
+                "PILIH GAMBAR",
                 style: TextStyle(color: Colors.white),
               ),
               onPressed: () {
-                // Navigator.of(context).pushNamed('/home');
+                imgFromGallery();
               }),
+          SizedBox(
+            height: 10,
+          ),
+          GetBuilder<PickerController>(
+            builder: (_) => ElevatedButton(
+                style: ButtonStyle(
+                    minimumSize:
+                        MaterialStateProperty.all(Size(Get.width - 20, 40)),
+                    backgroundColor: MaterialStateProperty.all(Colors.green)),
+                child: Text(
+                  "KIRIM",
+                  style: TextStyle(color: Colors.white),
+                ),
+                onPressed: () {
+                  TugasService.upload(user.id, tugas.id!);
+                }),
+          ),
         ],
       ),
     );

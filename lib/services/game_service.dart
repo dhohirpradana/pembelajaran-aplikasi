@@ -1,10 +1,12 @@
 import 'package:dio/dio.dart';
-import 'package:pembelajaran/constants/get_controller.dart';
+import 'package:get/get.dart';
 import 'package:pembelajaran/models/game.dart';
 import 'package:pembelajaran/constants/api.dart';
+import 'get/get_game.dart';
 
 class GameService {
   static Future<void> getGame() async {
+    var gameController = Get.put(GameController());
     gameController.updateGameSoal([]);
     gameController.onLoadData();
     try {

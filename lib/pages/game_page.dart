@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pembelajaran/constants/get_controller.dart';
 import 'package:pembelajaran/models/game.dart';
 import 'package:pembelajaran/constants/api.dart';
 import 'package:pembelajaran/services/game_service.dart';
@@ -12,6 +11,8 @@ import 'package:pembelajaran/widgets/shimmer_widget.dart';
 import 'game_detail_page.dart';
 
 class GamePage extends StatelessWidget {
+  var gameController = Get.put(GameController());
+
   final List<Game> listGame = [];
   getListGame() async {
     final dio = Dio();
@@ -66,15 +67,8 @@ class GamePage extends StatelessWidget {
               itemBuilder: (BuildContext context, int index) {
                 final suffleColor = shuffle(warna);
                 return GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            GameDetailPage(gameController.game[index]),
-                      ),
-                    );
-                  },
+                  onTap: () =>
+                      Get.to(() => GameDetailPage(gameController.game[index])),
                   child: Center(
                     child: Container(
                       margin: EdgeInsets.only(top: 10),
@@ -86,7 +80,7 @@ class GamePage extends StatelessWidget {
                       ),
                       child: Center(
                         child: Text(
-                          "${gameController.game[index].name}".toUpperCase(),
+                          "${gameController.game[index].name}",
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 24,

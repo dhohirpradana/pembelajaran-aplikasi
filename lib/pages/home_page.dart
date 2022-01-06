@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:pembelajaran/models/user.dart';
 import 'package:pembelajaran/services/auth_service.dart';
-import 'package:pembelajaran/services/first_few_world.dart';
 
 class HomePage extends StatelessWidget {
   final User user;
@@ -33,7 +32,8 @@ class HomePage extends StatelessWidget {
             Flexible(
               flex: 5,
               child: Container(
-                padding: EdgeInsets.only(top: Get.height * 4 / 5 / 7),
+                padding: EdgeInsets.only(
+                    top: Get.height * 4 / 5 / 7, left: 25, right: 25),
                 color: Colors.white,
                 child: Center(
                   child: Column(

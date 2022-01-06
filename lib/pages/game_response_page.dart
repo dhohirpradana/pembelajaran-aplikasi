@@ -39,11 +39,7 @@ class ResponseGame extends StatelessWidget {
             ),
             Center(
               child: GestureDetector(
-                onTap: () {
-                  Get.back();
-                  // Navigator.pushReplacement(context,
-                  //     MaterialPageRoute(builder: (context) => GamePage()));
-                },
+                onTap: () => Get.back(),
                 child: Container(
                   margin: EdgeInsets.only(bottom: 10),
                   width: Get.width - 20,

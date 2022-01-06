@@ -1,4 +1,3 @@
-// ignore_for_file: must_be_immutable
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:pembelajaran/models/materi.dart';
@@ -9,9 +8,10 @@ import 'package:pembelajaran/services/materi_detail_service.dart';
 
 class DetailMateriPage extends StatelessWidget {
   final Materi materi;
-  DetailMateriPage(this.materi);
+  DetailMateriPage({Key? key, required this.materi}) : super(key: key);
 
   final materiDetailController = Get.put(MateriDetailController());
+
   @override
   Widget build(BuildContext context) {
     MateriDetailService.getMateriDetail(materi.id!);

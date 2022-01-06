@@ -4,13 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pembelajaran/pages/materi_detail_page.dart';
 import 'package:pembelajaran/services/get/get_materi.dart';
-import 'package:pembelajaran/services/get/get_materi_detail.dart';
 import 'package:pembelajaran/services/materi_service.dart';
 import 'package:pembelajaran/widgets/shimmer_widget.dart';
 
 class MateriPage extends StatelessWidget {
   final materiController = Get.put(MateriController());
-  final materiDetailController = Get.put(MateriDetailController());
 
   List<Color> warna = [
     Color(0xFF00917c),
@@ -50,13 +48,8 @@ class MateriPage extends StatelessWidget {
               itemBuilder: (BuildContext context, int index) {
                 final suffleColor = shuffle(warna);
                 return GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => DetailMateriPage(
-                                materiController.materi[index])));
-                  },
+                  onTap: () => Get.to(() =>
+                      DetailMateriPage(materi: materiController.materi[index])),
                   child: Center(
                     child: Container(
                       margin: EdgeInsets.only(top: 10),
@@ -68,8 +61,7 @@ class MateriPage extends StatelessWidget {
                       ),
                       child: Center(
                         child: Text(
-                          "${materiController.materi[index].title}"
-                              .toUpperCase(),
+                          "${materiController.materi[index].title}",
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 24,

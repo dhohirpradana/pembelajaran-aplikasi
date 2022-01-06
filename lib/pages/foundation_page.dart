@@ -65,7 +65,9 @@ class FoundationPage extends StatelessWidget {
                   ? MateriPage()
                   : (paginationController.pageIndex == 2)
                       ? GamePage()
-                      : TugasPage(),
+                      : TugasPage(
+                          user: user,
+                        ),
         ),
       ),
     );

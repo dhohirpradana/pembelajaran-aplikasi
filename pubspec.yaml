@@ -30,6 +30,7 @@ dependencies:
   flutter_html: ^2.2.1
   get: ^4.6.1
   get_storage: ^2.0.3
+  image_picker: ^0.8.4+4
   material_design_icons_flutter: ^5.0.6595
   pinch_zoom: ^1.0.0
   shimmer: ^2.0.0
