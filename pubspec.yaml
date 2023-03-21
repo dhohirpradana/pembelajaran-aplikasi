@@ -23,7 +23,7 @@ environment:
 dependencies:
   cupertino_icons: ^1.0.4
   curved_navigation_bar: ^1.0.1
-  dio: ^4.0.4
+  dio: ^5.0.3
   fl_chart: ^0.40.6
   flutter:
     sdk: flutter
